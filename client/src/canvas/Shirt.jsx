@@ -12,6 +12,7 @@ const Shirt = () => {
 
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
+  const qrTexture = useTexture(snap.qrDecal);
 
   useFrame((state,delta) => easing.dampC(materials.lambert1.color,
     snap.color,0.25,delta));  
@@ -43,6 +44,17 @@ const Shirt = () => {
                 rotation={[0, 0, 0]}
                 scale={0.15}
                 map={logoTexture}
+                map-anisotropy={16}
+                depthTest={false}
+                depthWrite={true}
+            />
+        )}
+        {snap.isqrTexture && (
+            <Decal
+                position={[0, 0.04, 0.15]}
+                rotation={[0, 0, 0]}
+                scale={0.15}
+                map={qrTexture}
                 map-anisotropy={16}
                 depthTest={false}
                 depthWrite={true}
