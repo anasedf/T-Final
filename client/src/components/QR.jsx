@@ -29,7 +29,7 @@ const QR = ({ setQRImage }) => {
     const handleSubmit = () => {
         const { firstName, lastName, address, phoneNumber } = formData;
 
-        const data = `Firstanme: ${firstName}, Lastname: ${lastName}, Address: ${address}, Phone Number: ${phoneNumber}`;
+        const data = `Firstname: ${firstName}, Lastname: ${lastName}, Address: ${address}, Phone Number: ${phoneNumber}`;
         setQRCodeValue(data);
 
         // Set QR Image to parent component
