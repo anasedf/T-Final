@@ -16,7 +16,6 @@ const QR = ({ setQRImage }) => {
     });
 
     const [qrCodeValue, setQRCodeValue] = useState('');
-    const [qrImageURL, setQRImageURL] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -26,31 +25,27 @@ const QR = ({ setQRImage }) => {
         }));
     };
 
-    const handleSubmit = () => {
+    const handleGenerateQRCode = () => {
         const { firstName, lastName, address, phoneNumber } = formData;
 
-        const data = `Firstname: ${firstName}, Lastname: ${lastName}, Address: ${address}, Phone Number: ${phoneNumber}`;
+        const data = `Firstanme: ${firstName}, Lastname: ${lastName}, Address: ${address}, Phone Number: ${phoneNumber}`;
         setQRCodeValue(data);
 
         // Set QR Image to parent component
         setQRImage(data); // นำรูปภาพ QR code ไปอัปเดต state ใน Customizer
-        
-        console.log('Form submitted:', formData);
 
-        // Generate QR Code Image URL
-        const canvas = document.querySelector("canvas");
-        if (canvas !== null) {
-            const qrImageURL = canvas.toDataURL("image/png");
-            setQRImageURL(qrImageURL);
-            setFile(qrImageURL);
-        }
+        console.log('Form submitted:', formData);
     };
 
-    const handleDownloadQR = () => {
-        const downloadLink = document.createElement("a");
-        downloadLink.href = qrImageURL;
-        downloadLink.download = "qr_code.png";
+    const handleDownloadQRCode = () => {
+        const canvas = document.getElementById('tutorial');
+        const qrCodeURL = canvas.toDataURL('image/png');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = qrCodeURL;
+        downloadLink.download = 'QR_Code.png';
+        document.body.appendChild(downloadLink);
         downloadLink.click();
+        document.body.removeChild(downloadLink);
     };
 
     return (
@@ -96,7 +91,7 @@ const QR = ({ setQRImage }) => {
                 />
             </div>
             <button
-                onClick={handleSubmit}
+                onClick={handleGenerateQRCode}
                 style={{
                     backgroundColor: '#4CAF50',
                     color: 'white',
@@ -117,13 +112,9 @@ const QR = ({ setQRImage }) => {
             {qrCodeValue && (
                 <div>
                     <h3>QR Code</h3>
-                    <QRCode value={qrCodeValue} />
-                </div>
-            )}
-            {qrImageURL && (
-                <div>
+                    <QRCode value={qrCodeValue} id="tutorial" />
                     <button
-                        onClick={handleDownloadQR}
+                        onClick={handleDownloadQRCode}
                         style={{
                             backgroundColor: '#008CBA',
                             color: 'white',
@@ -131,10 +122,10 @@ const QR = ({ setQRImage }) => {
                             textAlign: 'center',
                             textDecoration: 'none',
                             display: 'inline-block',
-                            fontSize: '16px',
-                            margin: '4px 2px',
+                            fontSize: '14px',
+                            margin: '10px 0',
                             cursor: 'pointer',
-                            borderRadius: '10px',
+                            borderRadius: '5px',
                             border: 'none'
                         }}
                     >
