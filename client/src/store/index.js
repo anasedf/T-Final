@@ -4,12 +4,12 @@ import {proxy} from 'valtio';
 const state = proxy({
     intro: true,
     color: '#0437dd',
-    isLogoTexture: false,
+    isLogoTexture: true,
     isFullTexture: false,
-    isqrTexture: true,
+    isqrTexture: false,
     logoDecal: './threejs.png',
     fullDecal: './threejs.png',
-    qrDecal: './react.png'
+    qrDecal: './QR_Code.png'
 });
 
 export default state;
