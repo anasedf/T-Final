@@ -31,8 +31,7 @@ const QR = ({ setQRImage }) => {
         const data = `Firstanme: ${firstName}, Lastname: ${lastName}, Address: ${address}, Phone Number: ${phoneNumber}`;
         setQRCodeValue(data);
 
-        // Set QR Image to parent component
-        setQRImage(data); // นำรูปภาพ QR code ไปอัปเดต state ใน Customizer
+    
 
         console.log('Form submitted:', formData);
     };
