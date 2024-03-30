@@ -80,7 +80,21 @@ const QR = ({ setQRImage }) => {
                 onChange={handleInputChange}
                 />
             </div>
-            <button onClick={handleSubmit}>Generate QR Code</button>
+            <button onClick={handleSubmit}
+                style={{
+                    backgroundColor: '#4CAF50', // สีพื้นหลัง
+                    color: 'white', // สีข้อความ
+                    padding: '15px 32px', // ขนาดของ padding
+                    textAlign: 'center', // จัดข้อความตรงกลาง
+                    textDecoration: 'none', // ไม่มีการเส้นใต้ข้อความ
+                    display: 'inline-block', // ทำให้ button เป็น block และปรับขนาดตามข้อความ
+                    fontSize: '16px', // ขนาดตัวอักษร
+                    margin: '4px 2px', // ระยะห่างของ button
+                    cursor: 'pointer', // เปลี่ยนรูปร่างของ cursor เมื่อนำมาบน button
+                    borderRadius: '10px', // ทำให้มีรูปร่างเสมือนวงกลม
+                    border: 'none' // ไม่มีเส้นขอบ
+                }}
+                >Generate QR Code</button>
             <br />
             {qrCodeValue && (
                 <div>
@@ -88,8 +102,11 @@ const QR = ({ setQRImage }) => {
                     <QRCode value={qrCodeValue} />
                 </div>
             )}
+            
         </div>
+        
     );
+    
 };
 
 export default QR;
