@@ -9,7 +9,7 @@ import { downloadCanvasToImage, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes, Download } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 
-import { CustomButton, AIPicker, ColorPicker, FilePicker, Tab } from '../components';
+import { CustomButton, AIPicker, ColorPicker, FilePicker, Tab, QR } from '../components';
 
 
 const Customizer = () => {
@@ -45,6 +45,9 @@ const Customizer = () => {
                     handleSubmit={handleSubmit}
 
                 />
+            case "qrgen":
+                return <QR />
+            
             default:
                 return null;
 
