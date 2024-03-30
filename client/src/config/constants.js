@@ -28,6 +28,10 @@ export const FilterTabs = [
     name: "stylishShirt",
     icon: stylishShirt,
   },
+  {
+    name: "QR",
+    icon: qr,
+  },
 ];
 
 export const DecalTypes = {
@@ -38,6 +42,10 @@ export const DecalTypes = {
   full: {
     stateProperty: "fullDecal",
     filterTab: "stylishShirt",
+  },
+  QR: {
+    stateProperty: "qrDecal",
+    filterTab: "QR",
   },
 };
 
