@@ -13,7 +13,7 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 router.route('/').get((req, res) => {
-   res.status(200).json({message: "Hello from DALL.E ROUTES"});
+   res.status(200).json({ message: "Hello from DALL.E ROUTES" });
 });
 
 router.route('/').post(async (req, res) => {
@@ -24,33 +24,33 @@ router.route('/').post(async (req, res) => {
       //Call the OpenAI API to create an image
       const response = await openai.createImage({
          prompt: prompt,
-         n:1,
+         n: 1,
          size: '1024x1024',
          response_format: 'b64_json'
       });
 
-     
+
 
       //Get the image from the response
       const image = response.data.data[0].b64_json;
 
       //Send the image back to the client if the image is not null
-      if(image){
-         res.status(200).json({photo:image});
+      if (image) {
+         res.status(200).json({ photo: image });
       }
-      else{
-         res.status(500).json({message: "[Error] Image couldn't be fetched!"});
+      else {
+         res.status(500).json({ message: "[Error] Image couldn't be fetched!" });
       }
 
    } catch (error) {
       if (error.response) {
          console.log(error.response.status);
          console.log(error.response.data);
-       } else {
+      } else {
          console.log(error.message);
-       }
-      res.status(500).json({message: "[Error] Something went wrong!"});
-   }   
+      }
+      res.status(500).json({ message: "[Error] Something went wrong!" });
+   }
 });
 
 
