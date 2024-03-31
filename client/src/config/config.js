@@ -4,6 +4,8 @@ const config = {
   },
   production: {
     backendUrl: "https://t-shirt-builder-api.onrender.com/api/v1/dalle",
+  }, newqr: {
+    backendUrl: "http://localhost:8080/api/v1/dalle",
   },
 };
 

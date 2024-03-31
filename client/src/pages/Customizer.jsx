@@ -38,7 +38,7 @@ const Customizer = () => {
                     readFile={readFile}
                 />
             case "aipicker":
-                return <AIPicker 
+                return <AIPicker
                     prompt={prompt}
                     setPrompt={setPrompt}
                     generatingImg={generatingImg}
@@ -46,46 +46,86 @@ const Customizer = () => {
 
                 />
             case "qrgen":
-                return <QR />
-            
+                return <QR
+                    prompt={prompt}
+                    setPrompt={setPrompt}
+                    generatingImg={generatingImg}
+                    handleSubmit22={handleSubmit22} />
+
             default:
                 return null;
 
         }
     }
 
-    const handleSubmit =  async (type) => {
-        if(!prompt) return alert("Please enter a prompt first!");
-            // call the backend to generate an AI Image
-            try{
+    const handleSubmit = async (type) => {
+        if (!prompt) return alert("Please enter a prompt first!");
+        // call the backend to generate an AI Image
+        try {
             setGeneratingImg(true);
 
-        
-            const response = await fetch(`${config.production.backendUrl}`, {
-               method: 'POST',
-               headers: {
-                'Content-Type': 'application/json',
-               },
-               body : JSON.stringify({
-                prompt,
+
+            const response = await fetch('http://localhost:8080/api/v1/dalle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
                 })
             });
 
             const data = await response.json();
 
             // Render the image on the canvas (from base64 format) if the date is loaded otherwise display an error message
-            if(data.photo) {
+            if (data.photo) {
                 handleDecals(type, `data:image/png;base64,${data.photo}`);
-              
+
             }
-            else{
-                return alert("Something went wrong! Please try again.");
+            else {
+                return alert("Something went wrong! Please try again.ๅ");
             }
 
 
-        }catch (error){
+        } catch (error) {
             alert(error);
-        }finally{
+        } finally {
+            setGeneratingImg(false);
+            setActiveEditorTab("")
+        }
+    }
+    const handleSubmit22 = async (type) => {
+        if (!prompt) return alert("Please enter a prompt first!");
+        // call the backend to generate an AI Image
+        try {
+            setGeneratingImg(true);
+
+
+            const response = await fetch('http://localhost:8080/api/v1/dalle/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                })
+            });
+
+            const data = await response.json();
+
+            // Render the image on the canvas (from base64 format) if the date is loaded otherwise display an error message
+            if (data.photo) {
+                handleDecals(type, `data:image/png;base64,${data.photo}`);
+
+            }
+            else {
+                return alert("Something went wrong! Please try again.JA");
+            }
+
+
+        } catch (error) {
+            alert(error);
+        } finally {
             setGeneratingImg(false);
             setActiveEditorTab("")
         }
@@ -102,7 +142,7 @@ const Customizer = () => {
     }
 
     const handleActiveFilterTab = (tabName) => {
-        switch(tabName){
+        switch (tabName) {
             case "logoShirt":
                 state.isLogoTexture = !activeFilterTab[tabName];
                 break;
@@ -182,14 +222,14 @@ const Customizer = () => {
                             />
                         ))}
 
-                        {Download.map((tab)=>(
-                        <Tab
-                        tab={tab}
-                        key={tab.name}
-                        isActiveTab={activeFilterTab[tab.name]}
-                        handleClick={() => downloadCanvasToImage()}
-                        />
-             ))} 
+                        {Download.map((tab) => (
+                            <Tab
+                                tab={tab}
+                                key={tab.name}
+                                isActiveTab={activeFilterTab[tab.name]}
+                                handleClick={() => downloadCanvasToImage()}
+                            />
+                        ))}
                     </motion.div>
 
                 </>
