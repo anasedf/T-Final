@@ -28,4 +28,3 @@ dist-ssr
 
 #Build folder for production
 ./build
-.env
