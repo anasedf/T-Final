@@ -15,9 +15,11 @@ router.route('/').post(async (req, res) => {
         const { prompt } = req.body;
 
         // สร้าง URL ของ API ของ qrserver.com โดยใช้ข้อมูลที่ส่งมาจากลูกค้า
-        const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=1024x1024&data=${prompt} `;
+        let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=1024x1024&data=${prompt} `;
 
         // เรียกใช้ API ของ qrserver.com เพื่อสร้าง QR code
+        apiUrl = decodeURI(apiUrl);
+        apiUrl = encodeURI(apiUrl);
         const response = await axios.get(apiUrl, { responseType: 'arraybuffer' });
         const image = Buffer.from(response.data, 'binary').toString('base64')
         // ตรวจสอบสถานะของการเรียก API
