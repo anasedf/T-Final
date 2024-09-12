@@ -63,6 +63,10 @@ html {
   @apply w-14 h-14 flex justify-center items-center cursor-pointer select-none;
 }
 
+.qrpicker-container {
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[320px] rounded-md flex flex-col gap-4;
+}
+
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
